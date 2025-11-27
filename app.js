@@ -1,16 +1,14 @@
 const express = require("express");
+const path = require("path");
 const app = express();
+const supportRequirementRoutes = require("./src/routes/supportRequirement.routes");
 
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "frontend")));
 
-const ejemploRoutes = require("./src/routes/ejemplo.routes");
-app.use("/api/ejemplo", ejemploRoutes);
+app.use("/support-requirement", supportRequirementRoutes);
 
-const dbTestRoutes = require("./src/routes/db.routes");
-app.use("/api/db-test", dbTestRoutes);
-
-module.exports = app;
-
-const ticketRoutes = require("./src/routes/ticket.routes");
-app.use("/api/tickets", ticketRoutes);
-
+const PORT = 3000;
+app.listen(PORT, () => {
+    console.log(`Servidor corriendo en puerto ${PORT}`);
+});
