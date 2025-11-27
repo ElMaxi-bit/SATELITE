@@ -13,15 +13,56 @@ const TicketController = {
     },
 
     create: async (req, res) => {
-        const { nom_ticket, rut_trabajador, nom_trabajador, nom_local, activo, fecha } = req.body;
-        const data = await TicketModel.create(nom_ticket, rut_trabajador, nom_trabajador, nom_local, activo, fecha);
+        const {
+            desc_breve,
+            desc_detallada,
+            fec_creacion,
+            fec_cierre,
+            id_tipo,
+            id_cliente,
+            id_solicitante,
+            id_usuario
+        } = req.body;
+
+        const data = await TicketModel.create(
+            desc_breve,
+            desc_detallada,
+            fec_creacion,
+            fec_cierre,
+            id_tipo,
+            id_cliente,
+            id_solicitante,
+            id_usuario
+        );
+
         res.json(data);
     },
 
     update: async (req, res) => {
         const { id } = req.params;
-        const { nom_ticket, rut_trabajador, nom_trabajador, nom_local, activo, fecha } = req.body;
-        const data = await TicketModel.update(id, nom_ticket, rut_trabajador, nom_trabajador, nom_local, activo, fecha);
+        const {
+            desc_breve,
+            desc_detallada,
+            fec_creacion,
+            fec_cierre,
+            id_tipo,
+            id_cliente,
+            id_solicitante,
+            id_usuario
+        } = req.body;
+
+        const data = await TicketModel.update(
+            id,
+            desc_breve,
+            desc_detallada,
+            fec_creacion,
+            fec_cierre,
+            id_tipo,
+            id_cliente,
+            id_solicitante,
+            id_usuario
+        );
+
         res.json(data);
     },
 

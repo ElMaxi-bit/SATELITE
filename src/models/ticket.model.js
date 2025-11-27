@@ -14,29 +14,31 @@ const TicketModel = {
         return result.rows[0];
     },
 
-    create: async (nom_ticket, rut_trabajador, nom_trabajador, nom_local, activo, fecha) => {
+    create: async (desc_breve, desc_detallada, fec_creacion, fec_cierre, id_tipo, id_cliente, id_solicitante, id_usuario) => {
         const result = await pool.query(
             `INSERT INTO ticket 
-            (nom_ticket, rut_trabajador, nom_trabajador, nom_local, activo, fecha)
-            VALUES ($1, $2, $3, $4, $5, $6)
+            (desc_breve, desc_detallada, fec_creacion, fec_cierre, id_tipo, id_cliente, id_solicitante, id_usuario)
+            VALUES ($1,$2,$3,$4,$5,$6,$7,$8)
             RETURNING *`,
-            [nom_ticket, rut_trabajador, nom_trabajador, nom_local, activo, fecha]
+            [desc_breve, desc_detallada, fec_creacion, fec_cierre, id_tipo, id_cliente, id_solicitante, id_usuario]
         );
         return result.rows[0];
     },
 
-    update: async (num_ticket, nom_ticket, rut_trabajador, nom_trabajador, nom_local, activo, fecha) => {
+    update: async (num_ticket, desc_breve, desc_detallada, fec_creacion, fec_cierre, id_tipo, id_cliente, id_solicitante, id_usuario) => {
         const result = await pool.query(
             `UPDATE ticket SET 
-                nom_ticket = $1,
-                rut_trabajador = $2,
-                nom_trabajador = $3,
-                nom_local = $4,
-                activo = $5,
-                fecha = $6
-            WHERE num_ticket = $7
+                desc_breve = $1,
+                desc_detallada = $2,
+                fec_creacion = $3,
+                fec_cierre = $4,
+                id_tipo = $5,
+                id_cliente = $6,
+                id_solicitante = $7,
+                id_usuario = $8
+            WHERE num_ticket = $9
             RETURNING *`,
-            [nom_ticket, rut_trabajador, nom_trabajador, nom_local, activo, fecha, num_ticket]
+            [desc_breve, desc_detallada, fec_creacion, fec_cierre, id_tipo, id_cliente, id_solicitante, id_usuario, num_ticket]
         );
         return result.rows[0];
     },
